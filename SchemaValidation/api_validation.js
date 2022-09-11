@@ -10,7 +10,8 @@ module.exports.user = (req, res) => {
     mobNo: Joi.string()
       .regex(/^[0-9]{10}$/)
       .required(),
-    sports: Joi.array().items(Joi.string()).required(),
+    sports: Joi.array().items(Joi.object()).required(),
     email: Joi.string().email().required(),
+    hobbies: Joi.array().items(Joi.string()).required(),
   });
 };
