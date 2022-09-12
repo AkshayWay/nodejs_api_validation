@@ -1,0 +1,157 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "2.0.0",
+    "title": "Node Js API validation",
+    "description": "API validation along with swagger file",
+    "contact": {
+      "name": "Akshay Wayanganakr",
+      "email": "hi@akshaywayangankar.com",
+      "url": "http://akshaywayangankar.com/"
+    },
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    },
+    "produces": ["application/json"]
+  },
+  "host": "localhost:8080",
+  "basePath": "/",
+  "schemes": ["http"],
+  "paths": {
+    "/getUser": {
+      "get": {
+        "tags": ["User controller"],
+        "summary": "Get user info with ID",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "query",
+            "description": "User that we want to create",
+            "schema": {
+              "properties": {
+                "userID": {
+                  "type": "integer",
+                  "example": 1
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful get api operation"
+          },
+          "400": {
+            "description": "Invalid userId"
+          }
+        }
+      }
+    },
+    "/newUser": {
+      "post": {
+        "tags": ["User controller"],
+        "summary": "Create new user",
+        "parameters": [
+          {
+            "name": "newUser",
+            "in": "body",
+            "description": "User that we want to create",
+            "schema": {
+              "required": ["firstName", "age", "sports"],
+              "properties": {
+                "firstName": {
+                  "firstName": "string",
+                  "example": "Akshay"
+                },
+                "age": {
+                  "type": "integer",
+                  "example": "27"
+                },
+                "checkBoolean": {
+                  "type": "boolean",
+                  "example": true
+                },
+                "sports": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string",
+                        "example": "Cricket"
+                      },
+                      "players": {
+                        "type": "number",
+                        "example": 11
+                      }
+                    }
+                  }
+                },
+                "hobbies": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "New user created"
+          },
+          "400": {
+            "description": "Invalid username supplied"
+          }
+        }
+      }
+    },
+    "/editUser/{id}": {
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "description": "ID of user that we want to find",
+          "type": "integer"
+        }
+      ],
+      "put": {
+        "tags": ["User controller"],
+        "summary": "Edit user information with ID",
+        "parameters": [
+          {
+            "name": "editUser",
+            "in": "body",
+            "description": "edit user information",
+            "schema": {
+              "$ref": "#/definitions/editUser"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "New user created"
+          },
+          "400": {
+            "description": "Invalid username supplied"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "editUser": {
+      "required": ["name", "companies"],
+      "properties": {}
+    }
+  },
+  "tags": [
+    {
+      "name": "User controller",
+      "description": "API for users informaton in the application"
+    }
+  ]
+}
