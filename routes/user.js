@@ -6,6 +6,6 @@ const SchemaValidation = require("../SchemaValidation");
 router.get("/getUser", controller.getUser);
 router.post("/user", SchemaValidation.apiValidation, controller.postUser);
 router.post("/newUser", controller.postUser);
-router.put("/editUser/id", controller.editUser);
+router.put("/editUser/:id", controller.editUser);
 
 module.exports = router;
