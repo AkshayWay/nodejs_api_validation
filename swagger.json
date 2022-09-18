@@ -17,7 +17,7 @@
   },
   "host": "localhost:8080",
   "basePath": "/",
-  "schemes": ["http"],
+  "schemes": ["http", "https"],
   "paths": {
     "/getUser": {
       "get": {
@@ -103,7 +103,7 @@
             "description": "New user created"
           },
           "400": {
-            "description": "Invalid username supplied"
+            "description": "Invalid parametes"
           }
         }
       }
@@ -133,10 +133,49 @@
         ],
         "responses": {
           "200": {
-            "description": "New user created"
+            "description": "User information edited",
+            "schema": {
+              "$ref": "#/definitions/editUser"
+            }
           },
           "400": {
             "description": "Invalid username supplied"
+          }
+        }
+      }
+    },
+    "/delete/{id}": {
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "description": "ID of user that we want to find",
+          "type": "integer"
+        }
+      ],
+      "delete": {
+        "tags": ["User controller"],
+        "summary": "Delete user information with ID",
+        "parameters": [
+          {
+            "name": "editUser",
+            "in": "body",
+            "description": "delete user information",
+            "schema": {
+              "$ref": "#/definitions/editUser"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User information deleted",
+            "schema": {
+              "$ref": "#/definitions/editUser"
+            }
+          },
+          "400": {
+            "description": "Invalid userId"
           }
         }
       }
@@ -145,7 +184,42 @@
   "definitions": {
     "editUser": {
       "required": ["name", "companies"],
-      "properties": {}
+      "properties": {
+        "firstName": {
+          "type": "string",
+          "example": "Akshay"
+        },
+        "age": {
+          "type": "integer",
+          "example": "27"
+        },
+        "checkBoolean": {
+          "type": "boolean",
+          "example": true
+        },
+        "sports": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "example": "Cricket"
+              },
+              "players": {
+                "type": "number",
+                "example": 11
+              }
+            }
+          }
+        },
+        "hobbies": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
     }
   },
   "tags": [

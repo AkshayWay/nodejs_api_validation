@@ -12,5 +12,6 @@ module.exports.postUser = (req, res) => {
 };
 module.exports.editUser = (req, res) => {
   let path = req;
-  console.log("put method");
+  console.log("path", path);
+  res.send("User data successfully edited");
 };
