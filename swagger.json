@@ -114,7 +114,7 @@
           "name": "id",
           "in": "path",
           "required": true,
-          "description": "ID of user that we want to find",
+          "description": "ID of user that we want to edit",
           "type": "integer"
         }
       ],
@@ -144,38 +144,31 @@
         }
       }
     },
-    "/delete/{id}": {
-      "parameters": [
-        {
-          "name": "id",
-          "in": "path",
-          "required": true,
-          "description": "ID of user that we want to find",
-          "type": "integer"
-        }
-      ],
+    "/deleteUser/{id}": {
       "delete": {
         "tags": ["User controller"],
-        "summary": "Delete user information with ID",
+        "summary": "delete user information with ID",
         "parameters": [
           {
-            "name": "editUser",
-            "in": "body",
-            "description": "delete user information",
+            "name": "userId",
+            "in": "query",
+            "description": "User information deleted with this ID",
             "schema": {
-              "$ref": "#/definitions/editUser"
+              "properties": {
+                "userID": {
+                  "type": "integer",
+                  "example": 1
+                }
+              }
             }
           }
         ],
         "responses": {
           "200": {
-            "description": "User information deleted",
-            "schema": {
-              "$ref": "#/definitions/editUser"
-            }
+            "description": "User information deleted successfully"
           },
           "400": {
-            "description": "Invalid userId"
+            "description": "Invalid username supplied"
           }
         }
       }
