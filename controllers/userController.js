@@ -15,3 +15,8 @@ module.exports.editUser = (req, res) => {
   console.log("path", path);
   res.send("User data successfully edited");
 };
+module.exports.deleteUser = (req, res) => {
+  let path = req;
+  console.log("path", path);
+  res.send("User data successfully deleted");
+};

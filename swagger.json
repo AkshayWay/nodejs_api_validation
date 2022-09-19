@@ -27,7 +27,7 @@
           {
             "name": "userId",
             "in": "query",
-            "description": "User that we want to create",
+            "description": "Get user info with ID",
             "schema": {
               "properties": {
                 "userID": {
@@ -103,7 +103,7 @@
             "description": "New user created"
           },
           "400": {
-            "description": "Invalid parametes"
+            "description": "Invalid details"
           }
         }
       }
@@ -114,7 +114,7 @@
           "name": "id",
           "in": "path",
           "required": true,
-          "description": "ID of user that we want to find",
+          "description": "Edit user information with ID",
           "type": "integer"
         }
       ],
@@ -133,49 +133,42 @@
         ],
         "responses": {
           "200": {
-            "description": "User information edited",
+            "description": "User data successfully edited",
             "schema": {
               "$ref": "#/definitions/editUser"
             }
           },
           "400": {
-            "description": "Invalid username supplied"
+            "description": "Wrong inputs to edit information"
           }
         }
       }
     },
-    "/delete/{id}": {
-      "parameters": [
-        {
-          "name": "id",
-          "in": "path",
-          "required": true,
-          "description": "ID of user that we want to find",
-          "type": "integer"
-        }
-      ],
+    "/deleteUser/{id}": {
       "delete": {
         "tags": ["User controller"],
         "summary": "Delete user information with ID",
         "parameters": [
           {
-            "name": "editUser",
-            "in": "body",
-            "description": "delete user information",
+            "name": "userId",
+            "in": "query",
+            "description": "Delete user information with ID",
             "schema": {
-              "$ref": "#/definitions/editUser"
+              "properties": {
+                "userID": {
+                  "type": "integer",
+                  "example": 1
+                }
+              }
             }
           }
         ],
         "responses": {
           "200": {
-            "description": "User information deleted",
-            "schema": {
-              "$ref": "#/definitions/editUser"
-            }
+            "description": "User data successfully deleted"
           },
           "400": {
-            "description": "Invalid userId"
+            "description": "Invalid user data for edit"
           }
         }
       }
@@ -226,6 +219,10 @@
     {
       "name": "User controller",
       "description": "API for users informaton in the application"
+    },
+    {
+      "name": "Extra controller",
+      "description": "Extra controller"
     }
   ]
 }
